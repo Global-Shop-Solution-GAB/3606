@@ -1,0 +1,490 @@
+Program.Sub.ScreenSU.Start
+gui.F_Notes..create
+gui.F_Notes..caption("Project Notes")
+gui.F_Notes..size(10095,7125)
+gui.F_Notes..minx(0)
+gui.F_Notes..miny(0)
+gui.F_Notes..position(0,0)
+gui.F_Notes..event(unload,f_notes_unload)
+gui.F_Notes..alwaysontop(False)
+gui.F_Notes..fontname("Arial")
+gui.F_Notes..fontsize(8)
+gui.F_Notes..forecolor(0)
+gui.F_Notes..fontstyle(,,,,)
+gui.F_Notes..BackColor(-2147483633)
+gui.F_Notes..controlbox(True)
+gui.F_Notes..maxbutton(False)
+gui.F_Notes..minbutton(False)
+gui.F_Notes..mousepointer(0)
+gui.F_Notes..moveable(True)
+gui.F_Notes..sizeable(False)
+gui.F_Notes..ShowInTaskBar(True)
+gui.F_Notes..titlebar(True)
+gui.F_Notes.frmPrj.create(frame)
+gui.F_Notes.frmPrj.caption("")
+gui.F_Notes.frmPrj.size(6540,840)
+gui.F_Notes.frmPrj.position(100,15)
+gui.F_Notes.frmPrj.visible(True)
+gui.F_Notes.frmPrj.fontname("Arial")
+gui.F_Notes.frmPrj.fontsize(8)
+gui.F_Notes.frmBT.create(frame)
+gui.F_Notes.frmBT.caption("")
+gui.F_Notes.frmBT.size(3210,735)
+gui.F_Notes.frmBT.position(3425,5785)
+gui.F_Notes.frmBT.visible(True)
+gui.F_Notes.frmBT.fontname("Arial")
+gui.F_Notes.frmBT.fontsize(8)
+gui.F_Notes.lblPRJ.create(label,"Project:",True,840,255,1,125,200,True,0,Arial,8,-2147483633,0)
+gui.F_Notes.lblPRJ.parent("frmprj")
+gui.F_Notes.lblPRJ.defaultvalue("")
+gui.F_Notes.lblPRJ.controlgroup(0)
+gui.F_Notes.txtPRJ.create(textbox,"",True,1215,300,0,90,400,False,0,Arial,8,-2147483643,1)
+gui.F_Notes.txtPRJ.parent("frmprj")
+gui.F_Notes.txtPRJ.defaultvalue("")
+gui.F_Notes.txtPRJ.controlgroup(0)
+gui.F_Notes.lblDesc.create(label,"Description:",True,1380,255,1,1370,200,True,0,Arial,8,-2147483633,0)
+gui.F_Notes.lblDesc.parent("frmprj")
+gui.F_Notes.lblDesc.defaultvalue("")
+gui.F_Notes.lblDesc.controlgroup(0)
+gui.F_Notes.txtDesc.create(textbox,"",True,5085,300,0,1335,410,False,0,Arial,8,-2147483643,1)
+gui.F_Notes.txtDesc.parent("frmprj")
+gui.F_Notes.txtDesc.defaultvalue("")
+gui.F_Notes.txtDesc.controlgroup(0)
+gui.F_Notes.fgNote.create(gsflexgrid)
+gui.F_Notes.fgNote.FixedRows(0)
+gui.F_Notes.fgNote.FixedCols(0)
+gui.F_Notes.fgNote.visible(True)
+gui.F_Notes.fgNote.size(9660,2430)
+gui.F_Notes.fgNote.zorder(0)
+gui.F_Notes.fgNote.position(100,990)
+gui.F_Notes.fgNote.enabled(True)
+gui.F_Notes.fgNote.event(mouseup,fgnote_mouseup)
+gui.F_Notes.txtNotes.create(textboxm)
+gui.F_Notes.txtNotes.text("")
+gui.F_Notes.txtNotes.visible(True)
+gui.F_Notes.txtNotes.size(9645,1830)
+gui.F_Notes.txtNotes.zorder(0)
+gui.F_Notes.txtNotes.position(115,3870)
+gui.F_Notes.txtNotes.enabled(True)
+gui.F_Notes.txtNotes.alignment(0)
+gui.F_Notes.txtNotes.fontname("Arial")
+gui.F_Notes.txtNotes.fontsize(8)
+gui.F_Notes.txtNotes.maxLength(8000)
+gui.F_Notes.txtNotes.BackColor(-2147483643)
+gui.F_Notes.txtNotes.defaultvalue("")
+gui.F_Notes.txtNotes.controlgroup(0)
+gui.F_Notes.cmdSave.create(button)
+gui.F_Notes.cmdSave.caption("Save")
+gui.F_Notes.cmdSave.visible(True)
+gui.F_Notes.cmdSave.size(855,375)
+gui.F_Notes.cmdSave.zorder(0)
+gui.F_Notes.cmdSave.position(1205,200)
+gui.F_Notes.cmdSave.enabled(True)
+gui.F_Notes.cmdSave.parent("frmbt")
+gui.F_Notes.cmdSave.fontname("Arial")
+gui.F_Notes.cmdSave.fontsize(8)
+gui.F_Notes.cmdSave.event(click,cmdsave_click)
+gui.F_Notes.cmdSave.defaultvalue("")
+gui.F_Notes.cmdSave.controlgroup(0)
+gui.F_Notes.cmdDel.create(button)
+gui.F_Notes.cmdDel.caption("Delete")
+gui.F_Notes.cmdDel.visible(True)
+gui.F_Notes.cmdDel.size(855,375)
+gui.F_Notes.cmdDel.zorder(0)
+gui.F_Notes.cmdDel.position(2255,200)
+gui.F_Notes.cmdDel.enabled(True)
+gui.F_Notes.cmdDel.parent("frmbt")
+gui.F_Notes.cmdDel.fontname("Arial")
+gui.F_Notes.cmdDel.fontsize(8)
+gui.F_Notes.cmdDel.event(click,cmddel_click)
+gui.F_Notes.cmdDel.defaultvalue("")
+gui.F_Notes.cmdDel.controlgroup(0)
+gui.F_Notes.cmdNew.create(button)
+gui.F_Notes.cmdNew.caption("New")
+gui.F_Notes.cmdNew.visible(True)
+gui.F_Notes.cmdNew.size(855,375)
+gui.F_Notes.cmdNew.zorder(0)
+gui.F_Notes.cmdNew.position(80,200)
+gui.F_Notes.cmdNew.enabled(True)
+gui.F_Notes.cmdNew.parent("frmbt")
+gui.F_Notes.cmdNew.fontname("Arial")
+gui.F_Notes.cmdNew.fontsize(8)
+gui.F_Notes.cmdNew.event(click,cmdnew_click)
+gui.F_Notes.cmdNew.defaultvalue("")
+gui.F_Notes.cmdNew.controlgroup(0)
+gui.F_Notes.dtpDate.create(datepicker)
+gui.F_Notes.dtpDate.visible(True)
+gui.F_Notes.dtpDate.size(1305,285)
+gui.F_Notes.dtpDate.zorder(0)
+gui.F_Notes.dtpDate.position(2545,3525)
+gui.F_Notes.dtpDate.enabled(True)
+gui.F_Notes.dtpDate.checkbox(False)
+gui.F_Notes.dtpDate.defaultvalue("")
+gui.F_Notes.dtpDate.controlgroup(0)
+gui.F_Notes.lblRec.create(label,"Rec:",True,360,255,1,185,3585,True,0,Arial,8,-2147483633,0)
+gui.F_Notes.lblRec.defaultvalue("")
+gui.F_Notes.lblRec.controlgroup(0)
+gui.F_Notes.txtRec.create(textbox,"",True,810,300,0,555,3505,False,0,Arial,8,-2147483643,1)
+gui.F_Notes.txtRec.defaultvalue("")
+gui.F_Notes.txtRec.controlgroup(0)
+gui.F_Notes.lblDate.create(label,"Date:",True,465,255,1,2090,3590,True,0,Arial,8,-2147483633,0)
+gui.F_Notes.lblDate.defaultvalue("")
+gui.F_Notes.lblDate.controlgroup(0)
+gui.F_Notes.fgNote.tabstop(True)
+gui.F_Notes.fgNote.tabindex(1)
+gui.F_Notes.dtpDate.tabstop(True)
+gui.F_Notes.dtpDate.tabindex(2)
+gui.F_Notes.txtNotes.tabstop(True)
+gui.F_Notes.txtNotes.tabindex(3)
+gui.F_Notes.cmdNew.tabstop(True)
+gui.F_Notes.cmdNew.tabindex(4)
+gui.F_Notes.cmdSave.tabstop(True)
+gui.F_Notes.cmdSave.tabindex(5)
+gui.F_Notes.cmdDel.tabstop(True)
+gui.F_Notes.cmdDel.tabindex(6)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.UDT.uNotes.Define("ID",Long,ID)
+Variable.UDT.uNotes.Define("NOTE_DATE",Date,NOTE_DATE)
+Variable.UDT.uNotes.Define("NOTES",String,NOTES)
+Variable.UDT.uNotes.Define("REC",Long)
+Variable.uGlobal.uNotes.Declare("uNotes")
+Variable.Global.sID.Declare(String)
+Variable.Global.iCol.Declare(Long,0)
+Variable.Global.bSort.Declare(Boolean,True)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.bExists.Declare(Boolean)
+V.Local.sSql.Declare(String)
+Gui.F_Notes.txtPRJ.Text(V.Passed.PRJ_ID.Trim)
+Gui.F_Notes.txtDesc.Text(V.Passed.PRJ_DESC.Trim)
+
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+F.ODBC.Connection!conx.TableExists("GAB_PRJ_NOTES",V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,False)
+	F.Intrinsic.UI.Msgbox("Table GAB_PRJ_NOTES doesn't exist","GAB Error Message")
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Subbuildstyles_fgnote)
+F.Intrinsic.Control.CallSub(Subloadudt)
+Gui.F_Notes..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_Notes.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+program.sub.cmddel_click.start
+F.Intrinsic.Control.SetErrorHandler("cmddel_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+
+F.Intrinsic.Control.If(V.Global.sID,<>,"")
+	V.Local.sSql.Set("Select * From GAB_PRJ_NOTES")
+	F.Intrinsic.String.Concat(V.Local.sSql," WHERE ID='",V.Global.sID,"'",V.Local.sSql)
+	F.ODBC.Connection!conx.OpenRecordsetRW("rstDelN",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstDelN.EOF,=,False)
+		F.ODBC.conx!rstDelN.Delete
+		F.ODBC.conx!rstDelN.Update
+		F.ODBC.conx!rstDelN.Close
+		F.Intrinsic.UI.Msgbox("Notes Deleted","PRJ Notes Message")
+		F.Intrinsic.Control.CallSub(Cmdnew_click)
+		F.Intrinsic.Control.CallSub(Subloadudt)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmddel_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_Notes.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmddel_click.end
+
+program.sub.cmdsave_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdsave_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+
+F.Intrinsic.Control.If(V.Screen.F_Notes!txtNotes.Text,<>,"")
+	V.Local.sSql.Set("Select * From GAB_PRJ_NOTES")
+	F.Intrinsic.String.Concat(V.Local.sSql," WHERE ID='",V.Global.sID,"'",V.Local.sSql)
+	F.ODBC.Connection!conx.OpenRecordsetRW("rstSaveN",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstSaveN.EOF,=,True)
+		F.ODBC.conx!rstSaveN.AddNew
+		F.ODBC.conx!rstSaveN.Set!ID_PRJ(V.Screen.F_Notes!txtPRJ.Text)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conx!rstSaveN.Set!NOTE_DATE(V.Screen.F_Notes!dtpDate.Value)
+	F.ODBC.conx!rstSaveN.Set!NOTES(V.Screen.F_Notes!txtNotes.Text)
+	F.ODBC.conx!rstSaveN.Set!GS_USER(V.Caller.User)
+	F.ODBC.conx!rstSaveN.Update
+	F.ODBC.conx!rstSaveN.Close
+	F.Intrinsic.UI.Msgbox("Notes Saved","PRJ Notes Message")
+	F.Intrinsic.Control.CallSub(Cmdnew_click)
+	F.Intrinsic.Control.CallSub(Subloadudt)
+
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdsave_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_Notes.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdsave_click.end
+
+program.sub.f_notes_unload.start
+
+F.ODBC.Connection!Conx.Close
+F.Intrinsic.Control.End
+
+program.sub.f_notes_unload.end
+
+program.sub.cmdnew_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdnew_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+Gui.F_Notes.dtpDate.Value(V.Ambient.Date)
+Gui.F_Notes.txtNotes.Text("")
+Gui.F_Notes.txtRec.Text("")
+V.Global.sID.Set("")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdnew_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_Notes.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdnew_click.end
+
+Program.Sub.subBuildStyles_fgNote.Start
+F.Intrinsic.Control.SetErrorHandler("subBuildStyles_fgNote_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Declare/Define Default Font Size
+V.Local.iFontSize.Declare(Long,8)
+
+'Variable Used for Calculating Column Width (affected by Font Size)
+V.Local.fTempColWidth.Declare(Float,0)
+V.Local.fColWidthFactor.Declare(Float,1)
+V.Local.iCount.Declare(Long,0)
+
+'Define Number of Columns and Fixed Columns in Flex Grid
+'Fixed Column for Row Number
+Gui.F_Notes.fgNote.Cols(3)
+
+'Temp Set Row Count to 2 (So that Column Header can be Defined)
+'If No Data is Found Latter... Rows will Remain at 1 for the Fixed Header
+Gui.F_Notes.fgNote.Rows(2)
+Gui.F_Notes.fgNote.FixedRows(1)
+
+'--------------------------CREATE BUILD STYLES FOR FLEX GRID (USED FOR EITHER PART OF THE IF STATEMENT)----------------------------
+
+
+Gui.F_Notes.fgNote.TextMatrix(0,0,"Rec")
+V.Local.fTempColWidth.Set(500)
+F.Intrinsic.Math.Mult(V.Local.fTempColWidth,V.Local.fColWidthFactor,V.Local.fTempColWidth)
+Gui.F_Notes.fgNote.ColWidth(0,V.Local.fTempColWidth)
+Gui.F_Notes.fgNote.BuildStyle(1,0,"type","locked",True)
+Gui.F_Notes.fgNote.BuildStyle(1,0,"fontstyle","bold",True)
+Gui.F_Notes.fgNote.BuildStyle(1,0,"Format","alignment",4)
+Gui.F_Notes.fgNote.BuildStyle(2,0,"type","locked",True)
+Gui.F_Notes.fgNote.BuildStyle(2,0,"fontstyle","size",V.Local.iFontSize)
+Gui.F_Notes.fgNote.BuildStyle(2,0,"Format","alignment",4)
+
+Gui.F_Notes.fgNote.TextMatrix(1,0,"Due Date")
+V.Local.fTempColWidth.Set(1000)
+F.Intrinsic.Math.Mult(V.Local.fTempColWidth,V.Local.fColWidthFactor,V.Local.fTempColWidth)
+Gui.F_Notes.fgNote.ColWidth(1,V.Local.fTempColWidth)
+Gui.F_Notes.fgNote.BuildStyle(1,1,"type","locked",True)
+Gui.F_Notes.fgNote.BuildStyle(1,1,"fontstyle","bold",True)
+Gui.F_Notes.fgNote.BuildStyle(1,1,"Format","alignment",4)
+Gui.F_Notes.fgNote.BuildStyle(2,1,"type","locked",True)
+Gui.F_Notes.fgNote.BuildStyle(2,1,"fontstyle","size",V.Local.iFontSize)
+Gui.F_Notes.fgNote.BuildStyle(2,1,"Format","alignment",4)
+Gui.F_Notes.fgNote.BuildStyle(2,1,"Format","Mask","mm/dd/yyyy")
+
+Gui.F_Notes.fgNote.TextMatrix(2,0,"Note")
+V.Local.fTempColWidth.Set(7900)
+F.Intrinsic.Math.Mult(V.Local.fTempColWidth,V.Local.fColWidthFactor,V.Local.fTempColWidth)
+Gui.F_Notes.fgNote.ColWidth(2,V.Local.fTempColWidth)
+Gui.F_Notes.fgNote.BuildStyle(1,2,"type","locked",True)
+Gui.F_Notes.fgNote.BuildStyle(1,2,"fontstyle","bold",True)
+Gui.F_Notes.fgNote.BuildStyle(1,2,"Format","alignment",4)
+Gui.F_Notes.fgNote.BuildStyle(2,2,"type","locked",True)
+Gui.F_Notes.fgNote.BuildStyle(2,2,"fontstyle","size",V.Local.iFontSize)
+Gui.F_Notes.fgNote.BuildStyle(2,2,"Format","alignment",1)
+
+'Cell selection moves Down after hitting enter...
+Gui.F_Notes.fgNote.ApplyStyle(0,1)
+Gui.F_Notes.fgNote.SetProperty("Enter",0)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subBuildStyles_fgNote_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_Notes.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subBuildStyles_fgNote.End
+
+Program.Sub.subLoadUDT.Start
+F.Intrinsic.Control.SetErrorHandler("subLoadUDT_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+V.Local.iC.Declare(Long)
+F.Intrinsic.String.Concat("Select ID, NOTE_DATE, LEFT(NOTES,8000) AS NOTES From GAB_PRJ_NOTES Where ID_PRJ='",V.Screen.F_Notes!txtPRJ.text,"' Order by ID ",V.Local.sSql)
+F.ODBC.Connection!conx.OpenRecordsetRO("rstLoad",V.Local.sSql)
+F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoad","uGlobal.uNotes",False,100000)
+F.ODBC.conx!rstLoad.Close
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uNotes.UBound,1)
+	F.Intrinsic.Math.Add(V.Local.iC,1,V.uGlobal.uNotes(V.Local.iC)!REC)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+Gui.F_Notes.fgNote.Visible(False)
+Gui.F_Notes.fgNote.LoadFromUDT("V.uGlobal.uNotes","REC*!*NOTE_DATE*!*NOTES",2)
+Gui.F_Notes.fgNote.Visible(True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subLoadUDT_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_Notes.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subLoadUDT.End
+
+program.sub.fgnote_mouseup.start
+F.Intrinsic.Control.SetErrorHandler("fgnote_mouseup_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.dDate.Declare(Date)
+V.Local.iRec.Declare(Long)
+V.Local.sNotes.Declare(String)
+V.Local.sLine.Declare(String)
+F.Intrinsic.Control.If(V.Args.MouseRow,=,0)
+	F.Intrinsic.Control.CallSub(Subsort,"col",V.Args.MouseCol)
+F.Intrinsic.Control.Else
+	Gui.F_Notes.fgNote.GetTextMatrix(0,V.Args.MouseRow,V.Local.iRec)
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uNotes!REC,V.Local.iRec,V.Local.sLine)
+	F.Intrinsic.Control.If(V.Local.sLine,<>,"")
+		F.Intrinsic.String.Split(V.Local.sLine,"*!*",V.Local.sLine)
+		V.Global.sID.Set(V.uGlobal.uNotes(V.Local.sLine(0))!ID)
+	F.Intrinsic.Control.EndIf
+	Gui.F_Notes.txtRec.Text(V.Local.iRec)
+	Gui.F_Notes.fgNote.GetTextMatrix(1,V.Args.MouseRow,V.Local.dDate)
+	Gui.F_Notes.dtpDate.Value(V.Local.dDate)
+	Gui.F_Notes.fgNote.GetTextMatrix(2,V.Args.MouseRow,V.Local.sNotes)
+	Gui.F_Notes.txtNotes.Text(V.Local.sNotes)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("fgnote_mouseup_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_Notes.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.fgnote_mouseup.end
+
+Program.Sub.subSort.Start
+F.Intrinsic.Control.SetErrorHandler("subSort_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+Gui.F_Notes.fgNote.Visible(False)
+
+F.Intrinsic.Control.If(V.Args.col.trim,<>,V.Global.iCol.Trim)
+	V.Global.iCol.Set(V.Args.col.Trim)
+	V.Global.bSort.Set(False)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.If(V.Global.bSort,=,False)
+		V.Global.bSort.Set(True)
+	F.Intrinsic.Control.Else
+		V.Global.bSort.Set(False)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.SelectCase(V.Args.col)
+
+F.Intrinsic.Control.Case(0)
+	F.Intrinsic.Control.If(V.Global.bSort,=,False)
+		F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uNotes!REC,0)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uNotes!REC,1)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Case(1)
+	F.Intrinsic.Control.If(V.Global.bSort,=,False)
+		F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uNotes!NOTE_DATE,0)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uNotes!NOTE_DATE,1)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Case(2)
+	F.Intrinsic.Control.If(V.Global.bSort,=,False)
+		F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uNotes!NOTES,0)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uNotes!NOTES,1)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndSelect
+
+Gui.F_Notes.fgNote.LoadFromUDT("V.uGlobal.uNotes","REC*!*NOTE_DATE*!*NOTES",2)
+Gui.F_Notes.fgNote.Visible(True)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subSort_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_Notes.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subSort.End
+
+Program.Sub.Comments.Start
+${$0$}$GAB_PRJ_Notes$}$RRC$}$8/22/2014
+Program.Sub.Comments.End
+
