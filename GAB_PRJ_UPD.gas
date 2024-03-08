@@ -1,0 +1,800 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.Global.iID_PRJ.Declare(Long,0)
+Variable.UDT.uQuote.Define("NAME_CUSTOMER",String,NAME_CUSTOMER)
+Variable.UDT.uQuote.Define("QUOTE_NO",String,QUOTE_NO)
+Variable.UDT.uQuote.Define("PART",String,PART)
+Variable.UDT.uQuote.Define("LINE",String,LINE)
+Variable.UDT.uQuote.Define("QTY",Float,QTY)
+Variable.UDT.uQuote.Define("PRICE",Float,PRICE)
+Variable.UDT.uQuote.Define("EXTENSION",Float,EXTENSION)
+Variable.UDT.uQuote.Define("COST",Float,COST)
+Variable.UDT.uQuote.Define("MARGIN",Float,MARGIN)
+Variable.UDT.uQuote.Define("DATE_ITEM_PROM",Date,DATE_ITEM_PROM)
+Variable.uGlobal.uQuote.Declare("uQuote")
+Variable.UDT.uOrder.Define("ORDER_NO",String,ORDER_NO)
+Variable.UDT.uOrder.Define("NAME_CUSTOMER",String,NAME_CUSTOMER)
+Variable.UDT.uOrder.Define("PART",String,PART)
+Variable.UDT.uOrder.Define("LINE",String,LINE)
+Variable.UDT.uOrder.Define("QTY",Float,QTY)
+Variable.UDT.uOrder.Define("PRICE",Float,PRICE)
+Variable.UDT.uOrder.Define("EXTENSION",Float,EXTENSION)
+Variable.UDT.uOrder.Define("COST",Float,COST)
+Variable.UDT.uOrder.Define("MARGIN",Float,MARGIN)
+Variable.UDT.uOrder.Define("DATE_ITEM_PROM",Date,DATE_ITEM_PROM)
+Variable.UDT.uOrder.Define("FLAG_USE_MQD",String,FLAG_USE_MQD)
+Variable.uGlobal.uOrder.Declare("uOrder")
+Variable.UDT.uAPI.Define("NAME_VENDOR",String,NAME_VENDOR)
+Variable.UDT.uAPI.Define("INVOICE",String,INVOICE)
+Variable.UDT.uAPI.Define("AMT_INVOICE",Float,AMT_INVOICE)
+Variable.uGlobal.uAPI.Declare("uAPI")
+Variable.UDT.uShipSch.Define("ORDER_NO",String,ORDER_NO)
+Variable.UDT.uShipSch.Define("ORDER_LINE",String,ORDER_LINE)
+Variable.UDT.uShipSch.Define("QTY_OPEN",Float,QTY_OPEN)
+Variable.UDT.uShipSch.Define("DATE_DUE",Date,DATE_DUE)
+Variable.uGlobal.uShipSch.Declare("uShipSch")
+Variable.UDT.uPO.Define("PURCHASE_ORDER",String,PURCHASE_ORDER)
+Variable.UDT.uPO.Define("NAME_VENDOR",String,NAME_VENDOR)
+Variable.UDT.uPO.Define("PART",String,PART)
+Variable.UDT.uPO.Define("LINE",String,LINE)
+Variable.UDT.uPO.Define("QTY_ORDER",Float,QTY_ORDER)
+Variable.UDT.uPO.Define("QTY_RECD",Float,QTY_RECD)
+Variable.UDT.uPO.Define("COST",Float,COST)
+Variable.UDT.uPO.Define("EXTENSION",Float,EXTENSION)
+Variable.UDT.uPO.Define("EXT_RECD",Float,EXT_RECD)
+Variable.UDT.uPO.Define("DATE_DUE",Date,DATE_DUE)
+Variable.uGlobal.uPO.Declare("uPO")
+Variable.UDT.uShip.Define("ORDER_NO",String,ORDER_NO)
+Variable.UDT.uShip.Define("NAME_CUSTOMER",String,NAME_CUSTOMER)
+Variable.UDT.uShip.Define("PART",String,PART)
+Variable.UDT.uShip.Define("LINE",String,LINE)
+Variable.UDT.uShip.Define("QTY",Float,QTY)
+Variable.UDT.uShip.Define("PRICE",Float,PRICE)
+Variable.UDT.uShip.Define("EXTENSION",Float,EXTENSION)
+Variable.UDT.uShip.Define("COST",Float,COST)
+Variable.UDT.uShip.Define("MARGIN",Float,MARGIN)
+Variable.UDT.uShip.Define("DATE_SHIP",Date,DATE_SHIP)
+Variable.uGlobal.uShip.Declare("uShip")
+Variable.UDT.UOrder2.Define("ORDER_NO",String)
+Variable.UDT.UOrder2.Define("NAME_CUSTOMER",String)
+Variable.UDT.UOrder2.Define("PART",String)
+Variable.UDT.UOrder2.Define("LINE",String)
+Variable.UDT.UOrder2.Define("QTY",Float)
+Variable.UDT.UOrder2.Define("PRICE",Float)
+Variable.UDT.UOrder2.Define("EXTENSION",Float)
+Variable.UDT.UOrder2.Define("COST",Float)
+Variable.UDT.UOrder2.Define("MARGIN",Float)
+Variable.UDT.UOrder2.Define("DATE_ITEM_PROM",Date)
+Variable.uGlobal.uOrder2.Declare("UOrder2")
+Variable.UDT.uOrdHist.Define("ORDER_NO",String,ORDER_NO)
+Variable.UDT.uOrdHist.Define("NAME_CUSTOMER",String,NAME_CUSTOMER)
+Variable.UDT.uOrdHist.Define("PART",String,PART)
+Variable.UDT.uOrdHist.Define("LINE",String,LINE)
+Variable.UDT.uOrdHist.Define("QTY",Float,QTY)
+Variable.UDT.uOrdHist.Define("PRICE",Float,PRICE)
+Variable.UDT.uOrdHist.Define("EXTENSION",Float,EXTENSION)
+Variable.UDT.uOrdHist.Define("COST",Float,COST)
+Variable.UDT.uOrdHist.Define("MARGIN",Float,MARGIN)
+Variable.UDT.uOrdHist.Define("DATE_INVOICE",Date,DATE_INVOICE)
+Variable.uGlobal.uOrdHist.Declare("uOrdHist")
+Variable.UDT.uWO.Define("JOB",String,JOB)
+Variable.UDT.uWO.Define("SUFFIX",String,SUFFIX)
+Variable.UDT.uWO.Define("PART",String,PART)
+Variable.UDT.uWO.Define("DESCRIPTION",String,DESCRIPTION)
+Variable.UDT.uWO.Define("DATE_DUE",Date,DATE_DUE)
+Variable.UDT.uWO.Define("DATE_CLOSED",Date,DATE_CLOSED)
+Variable.UDT.uWO.Define("QTY_REM",Float,QTY_REM)
+Variable.UDT.uWO.Define("AMT_MATERIAL",Float,AMT_MATERIAL)
+Variable.UDT.uWO.Define("AMT_LABOR",Float,AMT_LABOR)
+Variable.UDT.uWO.Define("AMT_OVERHEAD",Float,AMT_OVERHEAD)
+Variable.UDT.uWO.Define("Status",String)
+Variable.uGlobal.uWO.Declare("uWO")
+Variable.Global.sDESCR_PRJ.Declare(String)
+Variable.Global.sStatus.Declare(String)
+Variable.Global.fQuote_Sales.Declare(Float,0)
+Variable.Global.fQuote_Cost.Declare(Float,0)
+Variable.Global.fQuote_Margin.Declare(Float,0)
+Variable.Global.fOrder_Sales.Declare(Float,0)
+Variable.Global.fOrder_Cost.Declare(Float,0)
+Variable.Global.fOrder_Margin.Declare(Float,0)
+Variable.Global.fShip_Sales.Declare(Float,0)
+Variable.Global.fShip_Cost.Declare(Float,0)
+Variable.Global.fShip_Margin.Declare(Float,0)
+Variable.Global.fOrdHist_Cost.Declare(Float,0)
+Variable.Global.fOrdHist_Sales.Declare(Float,0)
+Variable.Global.fOrdHist_Margin.Declare(Float,0)
+Variable.Global.fPO_Total.Declare(Float,0)
+Variable.Global.fPO_Rec.Declare(Float,0)
+Variable.Global.fPO_Rem.Declare(Float,0)
+Variable.Global.fAP_TOT.Declare(Float,0)
+Variable.Global.fJob_Labor.Declare(Float,0)
+Variable.Global.fJob_OH.Declare(Float,0)
+Variable.Global.fJob_Material.Declare(Float,0)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.bExists.Declare(Boolean)
+V.Local.sSql.Declare(String)
+
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+F.ODBC.Connection!conx.TableExists("GAB_PRJ_MAIN",V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,False)
+	F.Intrinsic.UI.Msgbox("Table GAB_PRJ_MAIN doesn't exist","GAB Error Message")
+	F.Intrinsic.Control.End
+F.Intrinsic.Control.EndIf
+
+V.Local.sSql.Set("Select * From GAB_PRJ_DESC")
+F.Intrinsic.String.Concat(V.Local.sSql," WHERE STATUS <> 'C' ",V.Local.sSql)
+F.ODBC.Connection!Conx.OpenRecordsetRO("rstGetPrj",V.Local.sSql)
+F.Intrinsic.Control.DoUntil(V.ODBC.Conx!rstGetPrj.EOF,=,True)
+	V.Global.iID_PRJ.Set(0)
+	V.Global.sDESCR_PRJ.Set("")
+	V.Global.sStatus.Set("")
+	V.Global.fQuote_Sales.Set(0)
+	V.Global.fQuote_Cost.Set(0)
+	V.Global.fQuote_Margin.Set(0)
+	V.Global.fOrder_Sales.Set(0)
+	V.Global.fOrder_Cost.Set(0)
+	V.Global.fOrder_Margin.Set(0)
+	V.Global.fShip_Sales.Set(0)
+	V.Global.fShip_Cost.Set(0)
+	V.Global.fShip_Margin.Set(0)
+	V.Global.fOrdHist_Cost.Set(0)
+	V.Global.fOrdHist_Sales.Set(0)
+	V.Global.fOrdHist_Margin.Set(0)
+	V.Global.fPO_Rec.Set(0)
+	V.Global.fPO_Rem.Set(0)
+	V.Global.fPO_Total.Set(0)
+	V.Global.fAP_TOT.Set(0)
+	V.Global.fJob_Labor.Set(0)
+	V.Global.fJob_Material.Set(0)
+	V.Global.fJob_OH.Set(0)
+	V.Global.iID_PRJ.Set(V.ODBC.conx!rstGetPrj.FieldVal!ID_PRJ)
+	V.Global.sDESCR_PRJ.Set(V.ODBC.conx!rstGetPrj.FieldVal!DESCR_PRJ)
+	V.Global.sStatus.Set(V.ODBC.conx!rstGetPrj.FieldVal!STATUS)
+
+	F.Intrinsic.Control.CallSub(Subloadquote)
+	F.Intrinsic.Control.CallSub(Subloadorder)
+	F.Intrinsic.Control.CallSub(Subloadship)
+	F.Intrinsic.Control.CallSub(Subloadordhist)
+	F.Intrinsic.Control.CallSub(Subloadpo)
+	F.Intrinsic.Control.CallSub(Subloadapi)
+	F.Intrinsic.Control.CallSub(Subloadwo)
+
+	F.Intrinsic.Control.CallSub(Subsaverec)
+	F.ODBC.conx!rstGetPrj.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.Conx!rstGetPrj.Close
+
+
+F.ODBC.Connection!Conx.Close
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+Program.Sub.subLoadQuote.Start
+F.Intrinsic.Control.SetErrorHandler("subLoadQuote_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSqlQte.Declare(String)
+V.Local.sSql.Declare(String)
+V.Local.fQuoteTot.Declare(Float)
+V.Local.fQuoteCost.Declare(Float)
+V.Local.fQuoteTotCost.Declare(Float)
+V.Local.fQuoteMargin.Declare(Float)
+
+V.Local.sQuote.Declare(String)
+V.Local.iC.Declare(Long,0)
+V.Local.fTemp.Declare(Float)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uQuote)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uQuote)
+
+V.Local.sSqlQte.Set("Select * From GAB_PRJ_DATAS")
+F.Intrinsic.String.Concat(V.Local.sSqlQte," WHERE ID_PRJ='",V.Global.iID_PRJ,"' AND TYPE='Q'",V.Local.sSqlQte)
+F.ODBC.Connection!Conx.OpenRecordsetRO("rstGetVal",V.Local.sSqlQte)
+F.Intrinsic.Control.DoUntil(V.ODBC.Conx!rstGetVal.EOF,=,True)
+
+	V.Local.sQuote.Set(V.ODBC.conx!rstGetVal.FieldVal!VALUE1)
+	V.Local.sSql.Set("select QUOTE_NO,NAME_CUSTOMER,PART,LEFT(RECORD_NO,3) AS LINE,QTY_QUOTED AS QTY, PRICE, COST, MARGIN, EXTENSION, DATE_ITEM_PROM ")
+	F.Intrinsic.String.Concat(V.Local.sSql,"from V_QUOTE_LINES, V_QUOTE_BILL_TO where V_QUOTE_LINES.QUOTE_NO=V_QUOTE_BILL_TO.QUOTE_NO",V.Local.sSql)
+	F.Intrinsic.String.Concat(V.Local.sSql," AND QUOTE_NO='",V.Local.sQuote,"'",V.Local.sSql)
+
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadQuote",V.Local.sSql)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoadQuote","uglobal.uQuote",True,100000)
+
+	F.ODBC.conx!rstLoadQuote.Close
+	F.ODBC.conx!rstGetVal.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.Conx!rstGetVal.Close
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uQuote.UBound,1)
+	F.Intrinsic.Math.Add(V.uGlobal.uQuote(V.Local.iC)!EXTENSION,V.Local.fQuoteTot,V.Local.fQuoteTot)
+	F.Intrinsic.Math.Mult(V.uGlobal.uQuote(V.Local.iC)!QTY,V.uGlobal.uQuote(V.Local.iC)!COST,V.Local.fQuoteCost)
+	F.Intrinsic.Math.Add(V.Local.fQuoteCost,V.Local.fQuoteTotCost,V.Local.fQuoteTotCost)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.If(V.Local.fQuoteTot,=,0)
+	V.Local.fQuoteMargin.Set(0)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Math.Div(V.Local.fQuoteTotCost,V.Local.fQuoteTot,V.Local.fQuoteMargin)
+	F.Intrinsic.Math.Sub(1,V.Local.fQuoteMargin,V.Local.fQuoteMargin)
+	F.Intrinsic.Control.If(V.Local.fQuoteMargin,=<,-1000)
+		V.Local.fQuoteMargin.Set(-999.9999)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+V.Global.fQuote_Sales.Set(V.Local.fQuoteTot)
+V.Global.fQuote_Cost.Set(V.Local.fQuoteTotCost)
+V.Global.fQuote_Margin.Set(V.Local.fQuoteMargin)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subLoadQuote_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subLoadQuote.End
+
+Program.Sub.subSaveRec.Start
+F.Intrinsic.Control.SetErrorHandler("subSaveRec_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+
+V.Local.sSql.Set("Select * From GAB_PRJ_MAIN")
+F.Intrinsic.String.Concat(V.Local.sSql," WHERE ID_PRJ='",V.Global.iID_PRJ,"'",V.Local.sSql)
+F.ODBC.Connection!Conx.OpenRecordsetRW("rstSaveRec",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rstSaveRec.EOF,=,True)
+	F.ODBC.conx!rstSaveRec.AddNew
+	F.ODBC.conx!rstSaveRec.Set!ID_PRJ(V.Global.iID_PRJ)
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rstSaveRec.Set!DESCR_PRJ(V.Global.sDESCR_PRJ)
+F.ODBC.conx!rstSaveRec.Set!STATUS(V.Global.sStatus)
+F.ODBC.conx!rstSaveRec.Set!QUOTE_SALES(V.Global.fQuote_Sales)
+F.ODBC.conx!rstSaveRec.Set!QUOTE_COST(V.Global.fQuote_Cost)
+F.ODBC.conx!rstSaveRec.Set!QUOTE_MARGIN(V.Global.fQuote_Margin)
+F.ODBC.conx!rstSaveRec.Set!ORDER_SALES(V.Global.fOrder_Sales)
+F.ODBC.conx!rstSaveRec.Set!ORDER_COST(V.Global.fOrder_Cost)
+F.ODBC.conx!rstSaveRec.Set!ORDER_MARGIN(V.Global.fOrder_Margin)
+F.ODBC.conx!rstSaveRec.Set!SHIP_SALES(V.Global.fShip_Sales)
+F.ODBC.conx!rstSaveRec.Set!SHIP_COST(V.Global.fShip_Cost)
+F.ODBC.conx!rstSaveRec.Set!SHIP_MARGIN(V.Global.fShip_Margin)
+F.ODBC.conx!rstSaveRec.Set!INVOICE_SALES(V.Global.fOrdHist_Sales)
+F.ODBC.conx!rstSaveRec.Set!INVOICE_COST(V.Global.fOrdHist_Cost)
+F.ODBC.conx!rstSaveRec.Set!INVOICE_MARGIN(V.Global.fOrdHist_Margin)
+F.ODBC.conx!rstSaveRec.Set!PO_TOT(V.Global.fPO_Total)
+F.ODBC.conx!rstSaveRec.Set!PO_REC(V.Global.fPO_Rec)
+F.ODBC.conx!rstSaveRec.Set!PO_REM(V.Global.fPO_Rem)
+F.ODBC.conx!rstSaveRec.Set!AP_TOTAL(V.Global.fAP_TOT)
+
+F.ODBC.conx!rstSaveRec.Set!JOB_LABOR(V.Global.fJob_Labor)
+F.ODBC.conx!rstSaveRec.Set!JOB_MATERIAL(V.Global.fJob_Material)
+F.ODBC.conx!rstSaveRec.Set!JOB_OH(V.Global.fJob_OH)
+
+
+F.ODBC.conx!rstSaveRec.Set!UPD_DATE(V.Ambient.Date)
+F.ODBC.conx!rstSaveRec.Set!UPD_TIME(V.Ambient.Time)
+
+F.ODBC.conx!rstSaveRec.Update
+
+F.ODBC.Conx!rstSaveRec.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subSaveRec_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subSaveRec.End
+
+Program.Sub.subLoadOrder.Start
+F.Intrinsic.Control.SetErrorHandler("subLoadOrder_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.Local.sSql.Declare(String)
+V.Local.sSql2.Declare(String)
+V.Local.sSqlOrd.Declare(String)
+V.Local.fOrderTot.Declare(Float)
+V.Local.fOrderCost.Declare(Float)
+V.Local.fOrderTotCost.Declare(Float)
+V.Local.fOrderMargin.Declare(Float)
+V.Local.iC.Declare(Long,0)
+V.Local.iC2.Declare(Long,0)
+V.Local.iCount.Declare(Long,-1)
+V.Local.sLocD.Declare(String)
+V.Local.dDateD.Declare(Date)
+V.Local.sLine.Declare(String)
+V.Local.fExt.Declare(Float)
+V.Local.sOrder.Declare(String)
+
+V.uGlobal.uOrder2.Redim(0,0)
+
+F.Intrinsic.Date.ConvertDString("01/01/2039","MM/DD/YYYY",V.Local.dDateD)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uOrder)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uOrder)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uShipSch)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uShipSch)
+
+V.Local.sSqlOrd.Set("Select * From GAB_PRJ_DATAS")
+F.Intrinsic.String.Concat(V.Local.sSqlOrd," WHERE ID_PRJ='",V.Global.iID_PRJ,"' AND TYPE='O'",V.Local.sSqlOrd)
+F.ODBC.Connection!Conx.OpenRecordsetRO("rstGetVal",V.Local.sSqlOrd)
+F.Intrinsic.Control.DoUntil(V.ODBC.Conx!rstGetVal.EOF,=,True)
+	V.Local.sOrder.Set(V.ODBC.conx!rstGetVal.FieldVal!VALUE1)
+	'Load from Order table
+	V.Local.sSql.Set("select ORDER_NO,NAME_CUSTOMER,PART, LEFT(RECORD_NO,3) AS LINE, QTY_BO AS QTY, COST, MARGIN, PRICE, (QTY_BO*PRICE) AS EXTENSION,DATE_ITEM_PROM, FLAG_USE_MQD ")
+	F.Intrinsic.String.Concat(V.Local.sSql,"from V_ORDER_LINES,V_CUSTOMER_MASTER where V_ORDER_LINES.CUSTOMER=V_CUSTOMER_MASTER.CUSTOMER",V.Local.sSql)
+	F.Intrinsic.String.Concat(V.Local.sSql," and ORDER_NO='",V.Local.sOrder,"'",V.Local.sSql)
+
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadOrder",V.Local.sSql)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoadOrder","uglobal.uOrder",True,100000)
+	F.ODBC.conx!rstLoadOrder.Close
+
+	V.Local.Ssql2.Set("SELECT ORDER_NO, LEFT(ORDER_LINE,3) AS ORDER_LINE, DATE_DUE, QTY_OPEN FROM V_OE_SHIP_SCHED WHERE FLAG_CLOSED='N'")
+	F.Intrinsic.String.Concat(V.Local.sSql2," and ORDER_NO='",V.Local.sOrder,"'",V.Local.sSql2)
+
+	F.ODBC.Connection!Conx.OpenLocalRecordsetRO("rstShipSch",V.Local.sSql2)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("Conx","rstShipSch","uglobal.uShipSch",True,100000)
+	F.ODBC.Conx!rstShipSch.Close
+
+	F.ODBC.conx!rstGetVal.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.Conx!rstGetVal.Close
+
+'Change Due Dates 1/1/1900 to 1/1/2039
+F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uShipSch!DATE_DUE,"1900-01-01",V.Local.sLocD)
+F.Intrinsic.Control.If(V.Local.sLocD,<>,"")
+	F.Intrinsic.String.Split(V.Local.sLocD,"*!*",V.Local.sLocD)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sLocD.UBound,1)
+		V.uGlobal.uShipSch(V.Local.sLocD(V.Local.iC))!DATE_DUE.Set(V.Local.dDateD)
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uOrder!DATE_ITEM_PROM,"1900-01-01",V.Local.sLocD)
+F.Intrinsic.Control.If(V.Local.sLocD,<>,"")
+	F.Intrinsic.String.Split(V.Local.sLocD,"*!*",V.Local.sLocD)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sLocD.UBound,1)
+		V.uGlobal.uOrder(V.Local.sLocD)!DATE_ITEM_PROM.Set(V.Local.dDateD)
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uOrder.UBound,1)
+	F.Intrinsic.Control.If(V.uGlobal.uOrder(V.Local.iC)!FLAG_USE_MQD,=,"Y")
+		F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uShipSch!ORDER_NO,V.uGlobal.uOrder(V.Local.iC)!ORDER_NO,V.uGlobal.uShipSch!ORDER_LINE,V.uGlobal.uOrder(V.Local.iC)!LINE,V.Local.sLine)
+		F.Intrinsic.Control.If(V.Local.sLine,<>,"")
+			F.Intrinsic.String.Split(V.Local.sLine,"*!*",V.Local.sLine)
+			F.Intrinsic.Control.For(V.Local.iC2,0,V.Local.sLine.UBound,1)
+				F.Intrinsic.Math.Add(V.Local.iCount,1,V.Local.iCount)
+				V.uGlobal.uOrder2.RedimPreserve(0,V.Local.iCount)
+				V.uGlobal.uOrder2(V.Local.iCount)!ORDER_NO.Set(V.uGlobal.uOrder(V.Local.iC)!ORDER_NO)
+				V.uGlobal.uOrder2(V.Local.iCount)!NAME_CUSTOMER.Set(V.uGlobal.uOrder(V.Local.iC)!NAME_CUSTOMER)
+				V.uGlobal.uOrder2(V.Local.iCount)!PART.Set(V.uGlobal.uOrder(V.Local.iC)!PART)
+				V.uGlobal.uOrder2(V.Local.iCount)!LINE.Set(V.uGlobal.uOrder(V.Local.iC)!LINE)
+				V.uGlobal.uOrder2(V.Local.iCount)!NAME_CUSTOMER.Set(V.uGlobal.uOrder(V.Local.iC)!NAME_CUSTOMER)
+				V.uGlobal.uOrder2(V.Local.iCount)!DATE_ITEM_PROM.Set(V.uGlobal.uShipSch(V.Local.sLine(V.Local.iC2))!DATE_DUE)
+				V.uGlobal.uOrder2(V.Local.iCount)!QTY.Set(V.uGlobal.uShipSch(V.Local.sLine(V.Local.iC2))!QTY_OPEN)
+				V.uGlobal.uOrder2(V.Local.iCount)!COST.Set(V.uGlobal.uOrder(V.Local.iC)!COST)
+				V.uGlobal.uOrder2(V.Local.iCount)!PRICE.Set(V.uGlobal.uOrder(V.Local.iC)!PRICE)
+				V.uGlobal.uOrder2(V.Local.iCount)!MARGIN.Set(V.uGlobal.uOrder(V.Local.iC)!MARGIN)
+				F.Intrinsic.Math.Mult(V.uGlobal.uOrder(V.Local.iC)!PRICE,V.uGlobal.uShipSch(V.Local.sLine(V.Local.iC2))!QTY_OPEN,V.uGlobal.uOrder2(V.Local.iCount)!EXTENSION)
+			F.Intrinsic.Control.Next(V.Local.iC2)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Math.Add(V.Local.iCount,1,V.Local.iCount)
+		V.uGlobal.uOrder2.RedimPreserve(0,V.Local.iCount)
+		V.uGlobal.uOrder2(V.Local.iCount)!ORDER_NO.Set(V.uGlobal.uOrder(V.Local.iC)!ORDER_NO)
+		V.uGlobal.uOrder2(V.Local.iCount)!NAME_CUSTOMER.Set(V.uGlobal.uOrder(V.Local.iC)!NAME_CUSTOMER)
+		V.uGlobal.uOrder2(V.Local.iCount)!PART.Set(V.uGlobal.uOrder(V.Local.iC)!PART)
+		V.uGlobal.uOrder2(V.Local.iCount)!LINE.Set(V.uGlobal.uOrder(V.Local.iC)!LINE)
+		V.uGlobal.uOrder2(V.Local.iCount)!NAME_CUSTOMER.Set(V.uGlobal.uOrder(V.Local.iC)!NAME_CUSTOMER)
+		V.uGlobal.uOrder2(V.Local.iCount)!DATE_ITEM_PROM.Set(V.uGlobal.uOrder(V.Local.iC)!DATE_ITEM_PROM)
+		V.uGlobal.uOrder2(V.Local.iCount)!QTY.Set(V.uGlobal.uOrder(V.Local.iC)!QTY)
+		V.uGlobal.uOrder2(V.Local.iCount)!COST.Set(V.uGlobal.uOrder(V.Local.iC)!COST)
+		V.uGlobal.uOrder2(V.Local.iCount)!PRICE.Set(V.uGlobal.uOrder(V.Local.iC)!PRICE)
+		V.uGlobal.uOrder2(V.Local.iCount)!MARGIN.Set(V.uGlobal.uOrder(V.Local.iC)!MARGIN)
+		V.uGlobal.uOrder2(V.Local.iCount)!EXTENSION.Set(V.uGlobal.uOrder(V.Local.iC)!EXTENSION)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uOrder2.UBound,1)
+	F.Intrinsic.Math.Add(V.uGlobal.uOrder2(V.Local.iC)!EXTENSION,V.Local.fOrderTot,V.Local.fOrderTot)
+	F.Intrinsic.Math.Mult(V.uGlobal.uOrder2(V.Local.iC)!QTY,V.uGlobal.uOrder2(V.Local.iC)!COST,V.Local.fOrderCost)
+	F.Intrinsic.Math.Add(V.Local.fOrderCost,V.Local.fOrderTotCost,V.Local.fOrderTotCost)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.If(V.Local.fOrderTot,=,0)
+	V.Local.fOrderMargin.Set(0)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Math.Div(V.Local.fOrderTotCost,V.Local.fOrderTot,V.Local.fOrderMargin)
+	F.Intrinsic.Math.Sub(1,V.Local.fOrderMargin,V.Local.fOrderMargin)
+	F.Intrinsic.Control.If(V.Local.fOrderMargin,=<,-1000)
+		V.Local.fOrderMargin.Set(-999.9999)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+V.Global.fOrder_Sales.Set(V.Local.fOrderTot)
+V.Global.fOrder_Cost.Set(V.Local.fOrderTotCost)
+V.Global.fOrder_Margin.Set(V.Local.fOrderMargin)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subLoadOrder_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subLoadOrder.End
+
+Program.Sub.subLoadShip.Start
+F.Intrinsic.Control.SetErrorHandler("subLoadShip_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+V.Local.sSqlOrd.Declare(String)
+V.Local.fOrderTot.Declare(Float)
+V.Local.fOrderCost.Declare(Float)
+V.Local.fOrderTotCost.Declare(Float)
+V.Local.fOrderMargin.Declare(Float)
+'V.Local.sOrderTot.Declare(String)
+V.Local.iC.Declare(Long,0)
+V.Local.sOrder.Declare(String)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uShip)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uShip)
+
+V.Local.sSqlOrd.Set("Select * From GAB_PRJ_DATAS")
+F.Intrinsic.String.Concat(V.Local.sSqlOrd," WHERE ID_PRJ='",V.Global.iID_PRJ,"' AND TYPE='O'",V.Local.sSqlOrd)
+F.ODBC.Connection!Conx.OpenRecordsetRO("rstGetVal",V.Local.sSqlOrd)
+F.Intrinsic.Control.DoUntil(V.ODBC.Conx!rstGetVal.EOF,=,True)
+	V.Local.sOrder.Set(V.ODBC.conx!rstGetVal.FieldVal!VALUE1)
+
+	'Load from Shipment table
+	V.Local.sSql.Set("select ORDER_NO, NAME_CUSTOMER, PART, LEFT(ORDER_REC,3) AS LINE, QTY_SHIPPED AS QTY, PRICE,COST,MARGIN, EXTENSION, DATE_SHIP ")
+	F.Intrinsic.String.Concat(V.Local.sSql,"from V_SHIPMENT_LINES, V_CUSTOMER_MASTER where V_SHIPMENT_LINES.CUSTOMER=V_CUSTOMER_MASTER.CUSTOMER",V.Local.sSql)
+	F.Intrinsic.String.Concat(V.Local.sSql," and ORDER_NO='",V.Local.sOrder,"'",V.Local.sSql)
+
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadShip",V.Local.sSql)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoadShip","uglobal.uShip",True,100000)
+	F.ODBC.conx!rstLoadShip.Close
+
+	F.ODBC.conx!rstGetVal.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.Conx!rstGetVal.Close
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uShip.UBound,1)
+	F.Intrinsic.Math.Add(V.uGlobal.uShip(V.Local.iC)!EXTENSION,V.Local.fOrderTot,V.Local.fOrderTot)
+	F.Intrinsic.Math.Mult(V.uGlobal.uShip(V.Local.iC)!QTY,V.uGlobal.uShip(V.Local.iC)!COST,V.Local.fOrderCost)
+	F.Intrinsic.Math.Add(V.Local.fOrderCost,V.Local.fOrderTotCost,V.Local.fOrderTotCost)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.If(V.Local.fOrderTot,=,0)
+	V.Local.fOrderMargin.Set(0)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Math.Div(V.Local.fOrderTotCost,V.Local.fOrderTot,V.Local.fOrderMargin)
+	F.Intrinsic.Math.Sub(1,V.Local.fOrderMargin,V.Local.fOrderMargin)
+	F.Intrinsic.Control.If(V.Local.fOrderMargin,=<,-1000)
+		V.Local.fOrderMargin.Set(-999.9999)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+V.Global.fShip_Sales.Set(V.Local.fOrderTot)
+V.Global.fShip_Cost.Set(V.Local.fOrderTotCost)
+V.Global.fShip_Margin.Set(V.Local.fOrderMargin)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subLoadShip_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subLoadShip.End
+
+Program.Sub.subLoadOrdHist.Start
+F.Intrinsic.Control.SetErrorHandler("subLoadOrdHist_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+V.Local.sSqlOrd.Declare(String)
+V.Local.fOrderTot.Declare(Float)
+V.Local.fOrderCost.Declare(Float)
+V.Local.fOrderTotCost.Declare(Float)
+V.Local.fOrderMargin.Declare(Float)
+
+'V.Local.sOrderTot.Declare(String)
+V.Local.iC.Declare(Long,0)
+V.Local.sOrder.Declare(String)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uOrdHist)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uOrdHist)
+
+V.Local.sSqlOrd.Set("Select * From GAB_PRJ_DATAS")
+F.Intrinsic.String.Concat(V.Local.sSqlOrd," WHERE ID_PRJ='",V.Global.iID_PRJ,"' AND TYPE='O'",V.Local.sSqlOrd)
+F.ODBC.Connection!Conx.OpenRecordsetRO("rstGetVal",V.Local.sSqlOrd)
+F.Intrinsic.Control.DoUntil(V.ODBC.Conx!rstGetVal.EOF,=,True)
+	V.Local.sOrder.Set(V.ODBC.conx!rstGetVal.FieldVal!VALUE1)
+
+	'Load from Order History
+	V.Local.sSql.Set("select ORDER_NO,NAME_CUSTOMER,PART, LEFT(ORDER_LINE,3) AS LINE, QTY_SHIPPED AS QTY, PRICE, COST, MARGIN, EXTENSION,DATE_INVOICE ")
+	F.Intrinsic.String.Concat(V.Local.sSql,"from V_ORDER_HIST_LINE,V_CUSTOMER_MASTER where V_ORDER_HIST_LINE.CUSTOMER=V_CUSTOMER_MASTER.CUSTOMER",V.Local.sSql)
+	F.Intrinsic.String.Concat(V.Local.sSql," and ORDER_NO='",V.Local.sOrder,"'",V.Local.sSql)
+
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadInv",V.Local.sSql)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoadInv","uglobal.uOrdHist",True,100000)
+	F.ODBC.conx!rstLoadInv.Close
+
+	F.ODBC.conx!rstGetVal.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.Conx!rstGetVal.Close
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uOrdHist.UBound,1)
+	F.Intrinsic.Math.Add(V.uGlobal.uOrdHist(V.Local.iC)!EXTENSION,V.Local.fOrderTot,V.Local.fOrderTot)
+	F.Intrinsic.Math.Mult(V.uGlobal.uOrdHist(V.Local.iC)!QTY,V.uGlobal.uOrdHist(V.Local.iC)!COST,V.Local.fOrderCost)
+	F.Intrinsic.Math.Add(V.Local.fOrderCost,V.Local.fOrderTotCost,V.Local.fOrderTotCost)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.If(V.Local.fOrderTot,=,0)
+	V.Local.fOrderMargin.Set(0)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Math.Div(V.Local.fOrderTotCost,V.Local.fOrderTot,V.Local.fOrderMargin)
+	F.Intrinsic.Math.Sub(1,V.Local.fOrderMargin,V.Local.fOrderMargin)
+	F.Intrinsic.Control.If(V.Local.fOrderMargin,=<,-1000)
+		V.Local.fOrderMargin.Set(-999.9999)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+V.Global.fOrdHist_Sales.Set(V.Local.fOrderTot)
+V.Global.fOrdHist_Cost.Set(V.Local.fOrderTotCost)
+V.Global.fOrdHist_Margin.Set(V.Local.fOrderMargin)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subLoadOrdHist_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subLoadOrdHist.End
+
+Program.Sub.subLoadPO.Start
+F.Intrinsic.Control.SetErrorHandler("subLoadPO_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+V.Local.fPOTot.Declare(Float)
+V.Local.sPOTot.Declare(String)
+V.Local.fPORecdTot.Declare(Float)
+V.Local.sPORecdTot.Declare(String)
+V.Local.fPOOpenTot.Declare(Float)
+V.Local.sPOOpenTot.Declare(String)
+V.Local.sPO.Declare(String)
+V.Local.sPOLine.Declare(String)
+V.Local.iC.Declare(Long,0)
+V.Local.sSqlPO.Declare(String)
+V.Local.sSqlPOLst.Declare(String)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uPO)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uPO)
+
+V.Local.sSqlPO.Set("Select * From GAB_PRJ_DATAS")
+F.Intrinsic.String.Concat(V.Local.sSqlPO," WHERE ID_PRJ='",V.Global.iID_PRJ,"' AND TYPE='P'",V.Local.sSqlPO)
+F.ODBC.Connection!Conx.OpenRecordsetRO("rstGetVal",V.Local.sSqlPO)
+F.Intrinsic.Control.DoUntil(V.ODBC.Conx!rstGetVal.EOF,=,True)
+	V.Local.sPO.Set(V.ODBC.conx!rstGetVal.FieldVal!VALUE1)
+	V.Local.sPOLine.Set(V.ODBC.conx!rstGetVal.FieldVal!VALUE2)
+	F.Intrinsic.String.Left(V.Local.sPOLine,3,V.Local.sPOLine)
+	F.Intrinsic.String.Concat("Select Part, Cost, Qty_Order From V_PO_HISTORY Where Purchase_Order='",V.Local.sPO,"' And PO_LINE='",V.Local.sPOLine,"0' And Date_Received='1900-1-1'",V.Local.sSqlPOLst)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadPOLst",V.Local.sSqlPOLst)
+	F.Intrinsic.Control.DoUntil(V.ODBC.conx!rstLoadPOLst.EOF,=,True)
+		V.Local.sSql.Set("select PURCHASE_ORDER,NAME_VENDOR, PART,LEFT(PO_LINE,3) AS LINE, QTY_ORDER, sum(qty_received+QTY_RECD_NOT_INSP) AS QTY_RECD,COST,QTY_ORDER*COST AS EXTENSION, DATE_DUE,")
+		F.Intrinsic.String.Concat(V.Local.sSql," sum(qty_received+QTY_RECD_NOT_INSP)*COST AS EXT_RECD from v_po_history, V_Vendor_MASTER",V.Local.sSql)
+		F.Intrinsic.String.Concat(V.Local.sSql," where V_PO_HISTORY.VENDOR=V_VENDOR_MASTER.VENDOR",V.Local.sSql)
+		F.Intrinsic.String.Concat(V.Local.sSql," AND purchase_order='",V.Local.sPO,"' AND PO_LINE='",V.Local.sPOLine,"0'",V.Local.sSql)
+		F.Intrinsic.String.Concat(V.Local.sSql," AND PART='",V.ODBC.conx!rstLoadPOLst.FieldVal!PART,"' AND COST='",V.ODBC.conx!rstLoadPOLst.FieldVal!COST,"' AND QTY_ORDER='",V.ODBC.conx!rstLoadPOLst.FieldVal!QTY_ORDER,"'",V.Local.sSql)
+		F.Intrinsic.String.Concat(V.Local.sSql," group by PURCHASE_ORDER,NAME_VENDOR,PART,LINE,QTY_ORDER,COST,EXTENSION,DATE_DUE",V.Local.sSql)
+		F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadPO",V.Local.sSql)
+		F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoadPO","uglobal.uPO",True,100000)
+		F.ODBC.conx!rstLoadPO.Close
+		F.ODBC.conx!rstLoadPOLst.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conx!rstLoadPOLst.Close
+	F.ODBC.conx!rstGetVal.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.Conx!rstGetVal.Close
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uPO.UBound,1)
+	F.Intrinsic.Math.Add(V.uGlobal.uPO(V.Local.iC)!EXTENSION,V.Local.fPOTot,V.Local.fPOTot)
+	F.Intrinsic.Math.Add(V.uGlobal.uPO(V.Local.iC)!EXT_RECD,V.Local.fPORecdTot,V.Local.fPORecdTot)
+F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Math.Sub(V.Local.fPOTot,V.Local.fPORecdTot,V.Local.fPOOpenTot)
+
+V.Global.fPO_Total.Set(V.Local.fPOTot)
+V.Global.fPO_Rec.Set(V.Local.fPORecdTot)
+V.Global.fPO_Rem.Set(V.Local.fPOOpenTot)
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subLoadPO_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subLoadPO.End
+
+Program.Sub.subLoadAPI.Start
+F.Intrinsic.Control.SetErrorHandler("subLoadAPI_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.Local.sSql.Declare(String)
+V.Local.fAPITot.Declare(Float)
+V.Local.sAPITot.Declare(String)
+V.Local.iC.Declare(Long,0)
+V.Local.sAPI.Declare(String)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uAPI)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uAPI)
+
+V.Local.sSql.Set("Select * From GAB_PRJ_DATAS ")
+F.Intrinsic.String.Concat(V.Local.sSql," WHERE ID_PRJ='",V.Global.iID_PRJ,"'",V.Local.sSql)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadInv",V.Local.sSql)
+F.Intrinsic.Control.DoUntil(V.ODBC.conx!rstLoadInv.EOF,=,True)
+	V.Local.sAPI.Set(V.ODBC.conx!rstLoadInv.FieldVal!VALUE1)
+	'Load from AP_Open_Items table
+	V.Local.sSql.Set("select NAME_VENDOR,INVOICE,AMT_INVOICE ")
+	F.Intrinsic.String.Concat(V.Local.sSql,"from AP_OPEN_ITEMS, V_VENDOR_MASTER WHERE AP_OPEN_ITEMS.VENDOR=V_VENDOR_MASTER.VENDOR ",V.Local.sSql)
+	F.Intrinsic.String.Concat(V.Local.sSql," and INVOICE='",V.Local.sAPI,"'",V.Local.sSql)
+
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadAPI",V.Local.sSql)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoadAPI","uglobal.uAPI",True,100000)
+	F.ODBC.conx!rstLoadAPI.Close
+
+	'Load from AP_Hist table
+	V.Local.sSql.Set("select distinct NAME_VENDOR, INVOICE, AMT_INVOICE ")
+	F.Intrinsic.String.Concat(V.Local.sSql,"from AP_HIST, V_VENDOR_MASTER WHERE AP_HIST.VENDOR=V_VENDOR_MASTER.VENDOR ",V.Local.sSql)
+	F.Intrinsic.String.Concat(V.Local.sSql," and INVOICE='",V.Local.sAPI,"'",V.Local.sSql)
+
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadAPIH",V.Local.sSql)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoadAPIH","uglobal.uAPI",True,100000)
+	F.ODBC.conx!rstLoadAPIH.Close
+
+	F.ODBC.conx!rstLoadInv.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.conx!rstLoadInv.Close
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uAPI.UBound,1)
+	F.Intrinsic.Math.Add(V.uGlobal.uAPI(V.Local.iC)!AMT_INVOICE,V.Local.fAPITot,V.Local.fAPITot)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+V.Global.fAP_TOT.Set(V.Local.fAPITot)
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subLoadAPI_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subLoadAPI.End
+
+Program.Sub.subLoadWO.Start
+F.Intrinsic.Control.SetErrorHandler("subLoadWO_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+V.Local.sSqlJob.Declare(String)
+V.Local.iC.Declare(Long,0)
+V.Local.sJOb.Declare(String)
+V.Local.fMat.Declare(Float,0)
+V.Local.fLab.Declare(Float,0)
+V.Local.fOH.Declare(Float,0)
+V.Local.dDate.Declare(Date)
+F.Intrinsic.Date.ConvertDString("01/01/1900","MM/DD/YYYY",V.Local.dDate)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uWO)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uWO)
+
+V.Local.sSqlJob.Set("Select * From GAB_PRJ_DATAS")
+F.Intrinsic.String.Concat(V.Local.sSqlJob," WHERE ID_PRJ='",V.Global.iID_PRJ,"' AND TYPE='J'",V.Local.sSqlJob)
+F.ODBC.Connection!Conx.OpenRecordsetRO("rstGetVal",V.Local.sSqlJob)
+F.Intrinsic.Control.DoUntil(V.ODBC.Conx!rstGetVal.EOF,=,True)
+	V.Local.sJOB.Set(V.ODBC.conx!rstGetVal.FieldVal!VALUE1)
+
+	'Load from Job Header
+	V.Local.sSql.Set("select JOB, SUFFIX, PART, DESCRIPTION, DATE_DUE, DATE_CLOSED, (QTY_ORDER-QTY_COMPLETED) AS QTY_REM, ")
+	F.Intrinsic.String.Concat(V.Local.sSql,"AMT_MATERIAL, AMT_LABOR, AMT_OVERHEAD from V_JOB_HEADER ",V.Local.sSql)
+	F.Intrinsic.String.Concat(V.Local.sSql," Where JOB='",V.Local.sJOB,"'",V.Local.sSql)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstLoadWO",V.Local.sSql)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rstLoadWO","uglobal.uWO",True,100000)
+	F.ODBC.conx!rstLoadWO.Close
+
+	F.ODBC.conx!rstGetVal.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.Conx!rstGetVal.Close
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uWO.UBound,1)
+	F.Intrinsic.Math.Add(V.uGlobal.uWO(V.Local.iC)!AMT_MATERIAL,V.Local.fMat,V.Local.fMat)
+	F.Intrinsic.Math.Add(V.uGlobal.uWO(V.Local.iC)!AMT_LABOR,V.Local.fLab,V.Local.fLab)
+	F.Intrinsic.Math.Add(V.uGlobal.uWO(V.Local.iC)!AMT_OVERHEAD,V.Local.fOH,V.Local.fOH)
+	F.Intrinsic.Control.If(V.uGlobal.uWO(V.Local.iC)!DATE_CLOSED,=,V.Local.dDate)
+		V.uGlobal.uWO(V.Local.iC)!Status.Set("Open")
+	F.Intrinsic.Control.Else
+		V.uGlobal.uWO(V.Local.iC)!Status.Set("Closed")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+V.Global.fJob_Labor.Set(V.Local.fLab)
+V.Global.fJob_Material.Set(V.Local.fMat)
+V.Global.fJob_OH.Set(V.Local.fOH)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("subLoadWO_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_UPD.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.subLoadWO.End
+
+Program.Sub.Comments.Start
+${$0$}$GAB_PRJ_UPD$}$RRC$}$7/28/2014
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$Created tu run in Task Schedule, This Will update Jobs (active or on hold), in the GAB_PRJ_MAIN
+
+Required Tables:
+GAB_PRJ_MAIN
+GAB_PRJ_START
+GAB_PRJ_DATAS
+GAB_PRJ_DESC
+Program.Sub.Comments.End
+
