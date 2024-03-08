@@ -1,0 +1,131 @@
+Program.Sub.ScreenSU.Start
+gui.F_PROJS..create
+gui.F_PROJS..caption("Project Setup Screen")
+gui.F_PROJS..size(2910,2445)
+gui.F_PROJS..minx(0)
+gui.F_PROJS..miny(0)
+gui.F_PROJS..position(0,0)
+gui.F_PROJS..event(unload,f_projs_unload)
+gui.F_PROJS..alwaysontop(False)
+gui.F_PROJS..fontname("Arial")
+gui.F_PROJS..fontsize(8)
+gui.F_PROJS..forecolor(0)
+gui.F_PROJS..fontstyle(,,,,)
+gui.F_PROJS..BackColor(-2147483633)
+gui.F_PROJS..controlbox(True)
+gui.F_PROJS..maxbutton(False)
+gui.F_PROJS..minbutton(False)
+gui.F_PROJS..mousepointer(0)
+gui.F_PROJS..moveable(True)
+gui.F_PROJS..sizeable(True)
+gui.F_PROJS..ShowInTaskBar(True)
+gui.F_PROJS..titlebar(True)
+gui.F_PROJS.lblPS.create(label,"Next Project ID Number:",True,2220,255,0,200,200,True,0,Arial,10,-2147483633,0)
+gui.F_PROJS.lblPS.defaultvalue("")
+gui.F_PROJS.lblPS.controlgroup(0)
+gui.F_PROJS.txtPROJ.create(textbox,"",True,1545,390,0,515,685,True,0,Arial,10,-2147483643,1)
+gui.F_PROJS.txtPROJ.defaultvalue("")
+gui.F_PROJS.txtPROJ.controlgroup(0)
+gui.F_PROJS.cmdSave.create(button)
+gui.F_PROJS.cmdSave.caption("Save")
+gui.F_PROJS.cmdSave.visible(True)
+gui.F_PROJS.cmdSave.size(855,375)
+gui.F_PROJS.cmdSave.zorder(0)
+gui.F_PROJS.cmdSave.position(800,1300)
+gui.F_PROJS.cmdSave.enabled(True)
+gui.F_PROJS.cmdSave.fontname("Arial")
+gui.F_PROJS.cmdSave.fontsize(8)
+gui.F_PROJS.cmdSave.event(click,cmdsave_click)
+gui.F_PROJS.cmdSave.defaultvalue("")
+gui.F_PROJS.cmdSave.controlgroup(0)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.Local.sSql.Declare(String)
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+V.Local.sSql.Set("Select PRJ_START,TYPE From GAB_PRJ_START ")
+F.Intrinsic.String.Concat(V.Local.sSql," WHERE TYPE='S'",V.Local.sSql)
+F.ODBC.Connection!Conx.OpenRecordsetRW("rstGetPrj",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rstGetPrj.EOF,=,"True")
+	F.ODBC.conx!rstGetPrj.AddNew
+	F.ODBC.conx!rstGetPrj.Set!PRJ_START(1)
+	F.ODBC.conx!rstGetPrj.Set!TYPE("S")
+	F.ODBC.conx!rstGetPrj.Update
+	Gui.F_PROJS.txtPROJ.Text(1)
+F.Intrinsic.Control.Else
+	Gui.F_PROJS.txtPROJ.Text(V.ODBC.conx!rstGetPrj.FieldVal!PRJ_START)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Conx!rstGetPrj.Close
+
+F.ODBC.Connection!Conx.Close
+
+Gui.F_PROJS..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_START.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+program.sub.cmdsave_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdsave_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sSql.Declare(String)
+F.Intrinsic.Control.If(V.Screen.F_PROJS!txtPROJ.Text,>,0)
+	F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+	V.Local.sSql.Set("Select PRJ_START,TYPE From GAB_PRJ_START ")
+	F.Intrinsic.String.Concat(V.Local.sSql," WHERE TYPE='S'",V.Local.sSql)
+	F.ODBC.Connection!Conx.OpenRecordsetRW("rstSavePrj",V.Local.sSql)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstSavePrj.EOF,=,"False")
+		F.ODBC.conx!rstSavePrj.Set!PRJ_START(V.Screen.F_PROJS!txtPROJ.Text)
+		F.ODBC.conx!rstSavePrj.Update
+		F.Intrinsic.UI.Msgbox("Next Project ID Number updated","GAB Project Message")
+
+	F.Intrinsic.Control.EndIf
+
+	F.ODBC.Conx!rstSavePrj.Close
+
+	F.ODBC.Connection!Conx.Close
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdsave_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GAB_PRJ_START.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+program.sub.cmdsave_click.end
+
+program.sub.f_projs_unload.start
+
+F.Intrinsic.Control.End
+
+program.sub.f_projs_unload.end
+
+Program.Sub.Comments.Start
+${$0$}$GAB_PRJ_START$}$RRC$}$7/24/2014
+${$3$}$0$}$$}$-1$}$-1$}$$}$1/1/1900$}$Table: GAB_PRJ_START
+Program.Sub.Comments.End
+
